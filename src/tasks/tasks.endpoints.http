@@ -1,4 +1,16 @@
-// instead of using Postman
-### Fetch all tasks 
+### Fetch all tasks
 GET http://localhost:5000/tasks
 Content-Type: application/json
+
+
+### Create a new task
+POST http://localhost:5000/tasks
+Content-Type: application/json
+
+{
+  "title": "Mololor sit amet",
+  "date": "2021-01-01T12:00:00Z",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis diam vel malesuada ultricies.",
+  "priority": "normal",
+  "status": "todo"
+}
