@@ -1,13 +1,13 @@
 import express, {
   Express,
-  Request,
-  Response,
 } from 'express';
 import { DataSource } from 'typeorm';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { Task } from './src/tasks/tasks.entity';
+import { tasksRouter } from './src/tasks/tasks.router'; 
+
 
 // instantiate express app
 const app: Express = express();
@@ -36,9 +36,9 @@ export const AppDataSource = new DataSource({
 const port = process.env.PORT;
 
 // create a default route
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TS server is running');
-});
+// app.get('/', (req: Request, res: Response) => {
+//   res.send('Express + TS server is running');
+// });
 
 AppDataSource.initialize().then(() => {
 // Start listenng to the requests on the defined port
@@ -48,3 +48,4 @@ console.log('DataSauce has been initialized.');
     console.log('Error during initializing DataSauce', error);
 });
 
+app.use('/', tasksRouter);

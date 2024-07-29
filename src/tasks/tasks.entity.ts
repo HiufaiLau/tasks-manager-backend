@@ -21,5 +21,6 @@ export class Task {
 
     @Column({type: 'enum', enum: Status, default: Status.todo
     })
+    
     status: Status;
 }
