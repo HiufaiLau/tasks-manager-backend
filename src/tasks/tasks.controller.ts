@@ -1,5 +1,6 @@
 import { AppDataSource } from '../../index';
 import { Task } from './tasks.entity';
+import { instanceToPlain } from 'class-transformer';
 
 export class TasksController {
   constructor(
@@ -20,11 +21,13 @@ export class TasksController {
           date: 'ASC',
         },
       });
-      console.log(allTasks);
+
+      // Convert the tasks instance to an array of objects
+      allTasks = instanceToPlain(allTasks) as Task[];
+
+      return allTasks;
     } catch (errors) {
       console.log(errors);
     }
-
-    // Convert the tasks instance to an array of objects
   }
 }

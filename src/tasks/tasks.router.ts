@@ -1,11 +1,16 @@
-import { Router, Request, Response } from "express";
+import { Request, Response, Router } from 'express';
 
-// fire the router function
-export const tasksRouter:Router = Router();
+import { TasksController } from './tasks.controller';
 
+/*Fire the router function*/
+export const tasksRouter: Router = Router();
 
-// create a default route
-tasksRouter.get('/tasks', (req: Request, res: Response) => {
-    res.send('Express + TS server is running');
-  });
-  
+// Create a default route.
+tasksRouter.get(
+  '/tasks',
+  async (req: Request, res: Response) => {
+    const taskController = new TasksController();
+    const allTasks = await taskController.getAll();
+    res.json(allTasks).status(200);
+  },
+);
